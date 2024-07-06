@@ -13,12 +13,16 @@ vlc
 yt-dlp
 
 
+Installation
+===
+
+1) Copy to either:
+- /usr/local/bin/
+- your own user's bin/ directory
+2) chmod u+x yt00b
+
+
 Usage
 ===
 
-Copy to either:
-- /usr/local/bin/
-- your own user's bin/ directory
-
-  `yt00b https://www.youtube.com/watch?v=C0DPdy98e4c`
-  (a literal "test video")
+`yt00b https://www.youtube.com/watch?v=C0DPdy98e4c`  (a literal "test video")

@@ -55,7 +55,7 @@ preflight_check() {
 }
 
 download_video() {
-    video_filename=$(yt-dlp --quiet "${youtube_url}")
+    video_filename=$(yt-dlp --print "%(title)s [%(id)s].%(ext)s" --no-simulate "${youtube_url}")
 }
 
 play_video() {

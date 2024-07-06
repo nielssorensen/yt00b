@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+set -e
+[[ -z ${DEBUG} ]] || set -x
+
+usage() {
+    echo "$0
+
+    Usage:
+        $0 youtube_url
+    "
+}
+
+check_arg() {
+    if [[ -z "${youtube_url}" ]]
+    then
+        echo '==> Please provide a Youtube video URL'
+        usage
+        exit 1
+    fi
+}
+
+check_system() {
+    if ! [[ "$(uname -s)" = 'Darwin' ]]
+    then
+        echo '==> Running on a Mac?'
+        usage
+        exit 1
+    fi
+}
+
+check_vlc() {
+    if ! command -v /Applications/VLC.app/Contents/MacOS/VLC > /dev/null
+    then
+        echo '==> Is VideoLAN Client (VLC) installed?' 1>&2
+        usage
+        exit 1
+    fi
+}
+
+check_ytdlp() {
+    if ! command -v yt-dlp > /dev/null
+    then
+        echo '==> Is yt-dlp installed?' 1>&2
+        usage
+        exit 1
+    fi
+}
+
+preflight_check() {
+    check_arg
+    check_system
+    check_vlc
+    check_ytdlp
+}
+
+download_video() {
+    video_filename=$(yt-dlp --quiet "${youtube_url}")
+}
+
+play_video() {
+    open -a vlc "${video_filename}"
+}
+
+main() {
+    local youtube_url=$1
+    local video_filename
+
+    preflight_check
+    download_video
+    play_video
+}
+
+main "$@"

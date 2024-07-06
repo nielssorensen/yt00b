@@ -1,0 +1,24 @@
+yt00b
+==
+
+A bash program to wrap yt-dlp and vlc so that one
+can download a video, and once complete, open it for viewing.
+
+
+Dependencies
+===
+Apple macOS
+bash
+vlc
+yt-dlp
+
+
+Usage
+===
+
+Copy to either:
+- /usr/local/bin/
+- your own user's bin/ directory
+
+  `yt00b https://www.youtube.com/watch?v=C0DPdy98e4c`
+  (a literal "test video")
